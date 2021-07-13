@@ -38,7 +38,9 @@ int main() {
   /**
    * TODO: Initialize the pid variable.
    */
+  //steering PID
   pid.Init(0.1, 0.001, 1.2);
+  // throttle PID
   pid_throttle.Init(0.01, 0.0001, 0.1);
 
   h.onMessage([&pid, &pid_throttle](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, 
