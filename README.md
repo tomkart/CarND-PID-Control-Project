@@ -41,7 +41,38 @@ Tips for setting up your environment can be found [here](https://classroom.udaci
 ### PID Controller
 ![PID Controller](img/pid.png)
 
-The P steers the car according to the distance from the lane centre. A large P will make the steering oscillate around the lane centre.
+#### P - Proportional
+The P parameter steers the car according to the distance from the lane center. A large P will make the steering oscillate around the lane center.
 
+#### I - Integral 
+The I parameter is to compensate for biases. A large I will make steering turn too much and correcting the steering very slowly.
 
+#### D - Differential
+D parameter helps the cars to drive to the centerline smoothly.
 
+### The Result
+The following values are used for steering & throttle.
+
+For steering, P value is adjusted for less oscillation and enough for turning.  D value is adjusted so that it can turn quickly enough. I is just big enough to compensate.
+```
+  //steering PID
+  pid.Init(0.1, 0.001, 1.2);
+```  
+
+Similar to steering adjustment for throttle, however we like to have much smoother throttle changes than steering, a smaller P & D is used.
+```
+// throttle PID
+  pid_throttle.Init(0.01, 0.0001, 0.1);
+```
+For throttle control, a slower target speed is also used for a larger angle turn, with min speed 10 and max speed 35.
+
+```
+    //Throttle value
+    double target_speed = 35 - (3 * abs(angle));
+
+    //set min speed
+    if(target_speed < 0)
+      target_speed = 10;
+    else if (target_speed > 35)
+      target_speed = 35;
+```
