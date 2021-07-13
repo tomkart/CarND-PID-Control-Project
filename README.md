@@ -39,7 +39,9 @@ Tips for setting up your environment can be found [here](https://classroom.udaci
 
 ## Discussions
 ### PID Controller
+![PID Controller](img/pid.png)
+
 The P steers the car according to the distance from the lane centre. A large P will make the steering oscillate around the lane centre.
-https://user-images.githubusercontent.com/11416755/125458347-7b2315f9-a650-40ef-addc-152ce1c8d173.mov
+
 
 
