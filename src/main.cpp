@@ -38,7 +38,7 @@ int main() {
   /**
    * TODO: Initialize the pid variable.
    */
-  pid.Init(0.1, 0.001, 1);
+  pid.Init(0.1, 0.001, 1.2);
   pid_throttle.Init(0.01, 0.0001, 0.1);
 
   h.onMessage([&pid, &pid_throttle](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, 
@@ -73,6 +73,14 @@ int main() {
 
           //Throttle value
           double target_speed = 35 - (3 * abs(angle));
+
+          //set min speed
+          if(target_speed < 0)
+            target_speed = 10;
+          else if (target_speed > 35)
+            target_speed = 35;
+            
+
           pid_throttle.UpdateError(speed - target_speed);
           throttle_value = pid_throttle.TotalError();
           // DEBUG
