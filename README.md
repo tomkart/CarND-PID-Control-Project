@@ -51,7 +51,7 @@ The I parameter is to compensate for biases. A large I will make steering turn t
 D parameter helps the cars to drive to the centerline smoothly.
 
 ### The Result
-The following values are used for steering & throttle.
+The following values are used for steering & throttle control.
 
 For steering, P value is adjusted for less oscillation and enough for turning.  D value is adjusted so that it can turn quickly enough. I is just big enough to compensate.
 ```
